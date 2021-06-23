@@ -22,8 +22,7 @@ VK
 ### On local machine
 
 Create an .env file in the root of the directory with the following variables
-```
-python
+```python
 DF_PROJECT = "Your dialogflow project id"
 DG_SESSION = "Your dialoglow session id"
 GOOGLE_APPLICATION_CREDENTIALS = "path to google credentials json"
@@ -42,21 +41,18 @@ Create a telegram bot using [@BotFather] (https://telegram.me/botfather). Get yo
 
 Python3 must already be installed. Then use pip (or pip3, there is a conflict with Python2) to install the dependencies:
 
-``
-python
+```python
 pip install -r requirements.txt
-``,
+```,
 Run the scripts with the following commands:
 
-``
-python
+```python
 python main_vk.py
-``,
+```,
 
-``
-python
+```python
 python main_tg.py
-``,
+```,
 
 ### Deploy to Heroku
 

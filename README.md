@@ -10,12 +10,12 @@ Send a question ([available questions] (https://github.com/ivankmk/dvmn_chatbots
 
 Telegram
 
-[! [tg_bot_gif.gif] (https://im4.ezgif.com/tmp/ezgif-4-ef1c7e6199d0.gif)] (https://im4.ezgif.com/tmp/ezgif-4-ef1c7e6199d0.gif)
+! [tg_bot_gif.gif] (https://im4.ezgif.com/tmp/ezgif-4-ef1c7e6199d0.gif)
 
 
 VK
 
-[! [vk_bot_gif.gif] (https://im4.ezgif.com/tmp/ezgif-4-85ed8ea56cc9.gif)] (https://im4.ezgif.com/tmp/ezgif-4-85ed8ea56cc9.gif)
+! [vk_bot_gif.gif] (https://im4.ezgif.com/tmp/ezgif-4-85ed8ea56cc9.gif)
 
 ## How to install
 

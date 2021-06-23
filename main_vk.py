@@ -3,7 +3,6 @@ import os
 import vk_api as vk
 from dflow import detect_intent_texts
 from vk_api.longpoll import VkLongPoll, VkEventType
-from dflow import detect_intent_texts
 from dotenv import load_dotenv
 import telegram
 import logging

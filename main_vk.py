@@ -12,9 +12,10 @@ logger = logging.getLogger(__name__)
 
 
 def get_dialoflow_response(event, vk_api):
+    session_id = f'vk-{event.user_id}'
     dialogflow_response = detect_intent_texts(
         os.environ.get('DF_PROJECT'),
-        os.environ.get('DG_SESSION'),
+        session_id,
         [event.text], 'ru')
     if dialogflow_response:
         vk_api.messages.send(

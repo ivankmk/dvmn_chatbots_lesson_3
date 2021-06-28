@@ -20,10 +20,10 @@ def help(bot, update):
 
 
 def get_dialoflow_response(bot, update):
-    """Echo the user message."""
+    session_id = f'tg-{update.message.from_user.id}'
     dialogflow_response = detect_intent_texts(
         os.environ.get('DF_PROJECT'),
-        os.environ.get('DG_SESSION'),
+        session_id,
         [update.message.text], 'ru')
     if dialogflow_response:
         update.message.reply_text(dialogflow_response)

@@ -19,7 +19,7 @@ def help(bot, update):
     update.message.reply_text('Help!')
 
 
-def echo(bot, update):
+def get_dialoflow_response(bot, update):
     """Echo the user message."""
     dialogflow_response = detect_intent_texts(
         os.environ.get('DF_PROJECT'),
@@ -42,7 +42,7 @@ def main():
     dp = updater.dispatcher
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", help))
-    dp.add_handler(MessageHandler(Filters.text, echo))
+    dp.add_handler(MessageHandler(Filters.text, get_dialoflow_response))
     dp.add_error_handler(error)
     updater.start_polling()
     updater.idle()

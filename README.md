@@ -10,12 +10,12 @@ Send a question ([available questions](https://github.com/ivankmk/dvmn_chatbots_
 
 Telegram
 
-![](https://im4.ezgif.com/tmp/ezgif-4-ef1c7e6199d0.gif)
+![](misc/tg.gif)
 
 
 VK
 
-![](https://im4.ezgif.com/tmp/ezgif-4-85ed8ea56cc9.gif)
+![](misc/vk.gif)
 
 ## How to install
 

@@ -4,19 +4,11 @@ import vk_api as vk
 from dflow import detect_intent_texts
 from vk_api.longpoll import VkLongPoll, VkEventType
 from dotenv import load_dotenv
-import telegram
+
 import logging
+from log_handler import MyLogsHandler
 
 logger = logging.getLogger(__name__)
-
-load_dotenv()
-
-
-class MyLogsHandler(logging.Handler):
-
-    def emit(self, record):
-        log_entry = self.format(record)
-        bot_logger.send_message(chat_id=tg_chat_id, text=log_entry)
 
 
 def echo(event, vk_api):
@@ -46,9 +38,5 @@ def main():
 
 
 if __name__ == "__main__":
-
-    tg_token = os.environ.get('TG_TOKEN')
-    tg_chat_id = os.environ.get('TG_CHAT_ID')
-    bot_logger = telegram.Bot(token=tg_token)
-
+    load_dotenv()
     main()

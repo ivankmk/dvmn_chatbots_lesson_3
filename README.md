@@ -55,6 +55,11 @@ python main_vk.py
 python main_tg.py
 ```
 
+### How to train the bot
+
+To train the bot use ```new_intents_loader.py``` file with the combination of ```train_phrases.txt```.
+
+
 ### Deploy to Heroku
 
 Clone the repository, login or register on [Heroku](https://dashboard.heroku.com)

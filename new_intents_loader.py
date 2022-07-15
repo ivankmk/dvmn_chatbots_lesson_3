@@ -41,11 +41,11 @@ def create_intent(project_id, display_name, training_phrases_parts, message_text
 if __name__ == '__main__':
     project = 'dvmn-tg-lesson-2-vwlv'
     intents_to_load = read_intents('train_phrases.txt')
-    for k, v in intents_to_load.items():
+    for key, value in intents_to_load.items():
         time.sleep(15)
         create_intent(
             project,
-            display_name=k,
-            training_phrases_parts=v['questions'],
-            message_texts=[v['answer']]
+            display_name=key,
+            training_phrases_parts=value['questions'],
+            message_texts=[value['answer']]
         )

@@ -2,7 +2,7 @@ import json
 import time
 
 
-def read_internts(filename):
+def read_intents(filename):
     with open(filename, 'r') as my_file:
         file_contents = my_file.read()
         return json.loads(file_contents)
@@ -40,7 +40,7 @@ def create_intent(project_id, display_name, training_phrases_parts, message_text
 
 if __name__ == '__main__':
     project = 'dvmn-tg-lesson-2-vwlv'
-    intents_to_load = read_internts('train_phrases.txt')
+    intents_to_load = read_intents('train_phrases.txt')
     for k, v in intents_to_load.items():
         time.sleep(15)
         create_intent(

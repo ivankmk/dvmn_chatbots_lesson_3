@@ -1,5 +1,10 @@
 import json
 import time
+from environs import Env
+
+
+env = Env()
+env.read_env()
 
 
 def read_intents(filename):
@@ -40,7 +45,8 @@ def create_intent(project_id, display_name, training_phrases_parts, message_text
 
 if __name__ == '__main__':
     project = 'dvmn-tg-lesson-2-vwlv'
-    intents_to_load = read_intents('train_phrases.txt')
+    # intents_to_load = read_intents('train_phrases.txt')
+    intents_to_load = read_intents(env.str('train_phrases'))
     for key, value in intents_to_load.items():
         time.sleep(15)
         create_intent(

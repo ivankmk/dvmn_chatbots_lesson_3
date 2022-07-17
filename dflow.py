@@ -1,10 +1,12 @@
 from google.cloud import dialogflow
+from dotenv import load_dotenv
+import os
 
 
 def detect_intent_texts(project_id, session_id, texts, language_code):
+    load_dotenv()
     session_client = dialogflow.SessionsClient()
     session = session_client.session_path(project_id, session_id)
-
     for text in texts:
         text_input = dialogflow.TextInput(
             text=text, language_code=language_code)
@@ -16,7 +18,3 @@ def detect_intent_texts(project_id, session_id, texts, language_code):
         )
     if not response.query_result.intent.is_fallback:
         return response.query_result.fulfillment_text
-
-
-if __name__ == '__main__':
-    pass

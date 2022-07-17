@@ -11,7 +11,7 @@ from log_handler import MyLogsHandler
 logger = logging.getLogger(__name__)
 
 
-def get_dialoflow_response(event, vk_api):
+def respont_to_user(event, vk_api):
     session_id = f'vk-{event.user_id}'
     dialogflow_response = detect_intent_texts(
         os.environ.get('DF_PROJECT'),
@@ -35,7 +35,7 @@ def main():
     longpoll = VkLongPoll(vk_session)
     for event in longpoll.listen():
         if event.type == VkEventType.MESSAGE_NEW and event.to_me:
-            get_dialoflow_response(event, vk_api)
+            respont_to_user(event, vk_api)
 
 
 if __name__ == "__main__":

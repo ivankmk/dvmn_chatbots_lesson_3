@@ -1,10 +1,9 @@
+from ast import arg
 import json
 import time
-from environs import Env
-
-
-env = Env()
-env.read_env()
+from dotenv import load_dotenv
+import os
+import argparse
 
 
 def read_intents(filename):
@@ -16,10 +15,10 @@ def read_intents(filename):
 def create_intent(project_id, display_name, training_phrases_parts, message_texts):
     """Create an intent of the given intent type."""
     from google.cloud import dialogflow
-
     intents_client = dialogflow.IntentsClient()
 
     parent = dialogflow.AgentsClient.agent_path(project_id)
+
     training_phrases = []
     for training_phrases_part in training_phrases_parts:
         part = dialogflow.Intent.TrainingPhrase.Part(
@@ -32,8 +31,9 @@ def create_intent(project_id, display_name, training_phrases_parts, message_text
     message = dialogflow.Intent.Message(text=text)
 
     intent = dialogflow.Intent(
-        display_name=display_name, training_phrases=training_phrases, messages=[
-            message]
+        display_name=display_name,
+        training_phrases=training_phrases,
+        messages=[message]
     )
 
     response = intents_client.create_intent(
@@ -44,14 +44,24 @@ def create_intent(project_id, display_name, training_phrases_parts, message_text
 
 
 if __name__ == '__main__':
-    project = 'dvmn-tg-lesson-2-vwlv'
-    # intents_to_load = read_intents('train_phrases.txt')
-    intents_to_load = read_intents(env.str('train_phrases'))
+    load_dotenv()
+    parser = argparse.ArgumentParser(
+        description='Script will load new intents.'
+        )
+    parser.add_argument(
+        '-f',
+        '--file_with_intents',
+        help='File with intents',
+        default=os.getenv('train_phrases')
+    )
+    args = parser.parse_args()
+    project = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+    intents_to_load = read_intents(args.file_with_intents)
     for key, value in intents_to_load.items():
-        time.sleep(15)
         create_intent(
             project,
             display_name=key,
             training_phrases_parts=value['questions'],
             message_texts=[value['answer']]
         )
+        time.sleep(15)

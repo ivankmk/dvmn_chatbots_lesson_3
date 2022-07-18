@@ -2,7 +2,7 @@ import logging
 import telegram
 
 
-class MyLogsHandler(logging.Handler):
+class LogsHandler(logging.Handler):
 
     def __init__(self, tg_token, tg_chat_id):
         self.bot = telegram.Bot(token=tg_token)

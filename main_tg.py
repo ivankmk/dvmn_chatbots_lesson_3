@@ -3,7 +3,7 @@ from dflow import detect_intent_texts
 import os
 from dotenv import load_dotenv, find_dotenv
 import logging
-from log_handler import MyLogsHandler
+from log_handler import LogsHandler
 
 
 logger = logging.getLogger(__name__)
@@ -40,7 +40,9 @@ def error(bot, update, error):
 
 def main():
     logger.setLevel(logging.INFO)
-    logger.addHandler(MyLogsHandler())
+    logger.addHandler(LogsHandler(
+        os.getenv('TG_TOKEN'),
+        os.getenv('TG_CHAT_ID')))
     logger.info('TG Bot is running.')
     updater = Updater(os.environ.get('TG_DVMN_LESSONS'))
     dp = updater.dispatcher
@@ -53,5 +55,5 @@ def main():
 
 
 if __name__ == '__main__':
-    load_dotenv(find_dotenv())
+    load_dotenv()
     main()

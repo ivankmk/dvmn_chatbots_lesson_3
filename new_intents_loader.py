@@ -4,6 +4,7 @@ import time
 from dotenv import load_dotenv
 import os
 import argparse
+from google.cloud import dialogflow
 
 
 def read_intents(filename):
@@ -14,7 +15,6 @@ def read_intents(filename):
 
 def create_intent(creds, display_name, training_phrases_parts, message_texts):
     """Create an intent of the given intent type."""
-    from google.cloud import dialogflow
     intents_client = dialogflow.IntentsClient()
 
     parent = dialogflow.AgentsClient.agent_path(creds)
@@ -47,7 +47,7 @@ if __name__ == '__main__':
     load_dotenv()
     parser = argparse.ArgumentParser(
         description='Script will load new intents.'
-        )
+    )
     parser.add_argument(
         '-f',
         '--file_with_intents',

@@ -6,7 +6,7 @@ from vk_api.longpoll import VkLongPoll, VkEventType
 from dotenv import load_dotenv
 
 import logging
-from log_handler import MyLogsHandler
+from log_handler import LogsHandler
 
 logger = logging.getLogger(__name__)
 
@@ -27,7 +27,9 @@ def respont_to_user(event, vk_api):
 
 def main():
     logger.setLevel(logging.INFO)
-    logger.addHandler(MyLogsHandler())
+    logger.addHandler(LogsHandler(
+        os.getenv('TG_TOKEN'),
+        os.getenv('TG_CHAT_ID')))
     logger.info('VK bot is running.')
 
     vk_session = vk.VkApi(token=os.environ.get('VK_TOKEN'))

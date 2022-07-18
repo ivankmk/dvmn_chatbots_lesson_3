@@ -12,12 +12,12 @@ def read_intents(filename):
         return json.loads(file_contents)
 
 
-def create_intent(project_id, display_name, training_phrases_parts, message_texts):
+def create_intent(creds, display_name, training_phrases_parts, message_texts):
     """Create an intent of the given intent type."""
     from google.cloud import dialogflow
     intents_client = dialogflow.IntentsClient()
 
-    parent = dialogflow.AgentsClient.agent_path(project_id)
+    parent = dialogflow.AgentsClient.agent_path(creds)
 
     training_phrases = []
     for training_phrases_part in training_phrases_parts:
@@ -55,11 +55,11 @@ if __name__ == '__main__':
         default=os.getenv('train_phrases')
     )
     args = parser.parse_args()
-    project = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+    creds = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
     intents_to_load = read_intents(args.file_with_intents)
     for subject, questions_answers in intents_to_load.items():
         create_intent(
-            project,
+            creds,
             display_name=subject,
             training_phrases_parts=questions_answers['questions'],
             message_texts=[questions_answers['answer']]

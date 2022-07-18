@@ -29,6 +29,8 @@ def respont_to_user(bot, update):
 
     if dialogflow_response:
         update.message.reply_text(dialogflow_response)
+    else:
+        update.message.reply_text('Хмм, я не понял :-(')
 
 
 def error(bot, update, error):

@@ -57,11 +57,11 @@ if __name__ == '__main__':
     args = parser.parse_args()
     project = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
     intents_to_load = read_intents(args.file_with_intents)
-    for key, value in intents_to_load.items():
+    for subject, questions_answers in intents_to_load.items():
         create_intent(
             project,
-            display_name=key,
-            training_phrases_parts=value['questions'],
-            message_texts=[value['answer']]
+            display_name=subject,
+            training_phrases_parts=questions_answers['questions'],
+            message_texts=[questions_answers['answer']]
         )
         time.sleep(15)

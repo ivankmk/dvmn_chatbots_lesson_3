@@ -14,11 +14,6 @@ def start(bot, update):
     update.message.reply_text('Hi!')
 
 
-def help(bot, update):
-    """Send a message when the command /help is issued."""
-    update.message.reply_text('Help!')
-
-
 def respont_to_user(bot, update):
     session_id = f'tg-{update.message.from_user.id}'
 

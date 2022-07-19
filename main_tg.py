@@ -1,7 +1,7 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from dflow import detect_intent_texts
 import os
-from dotenv import load_dotenv, find_dotenv
+from dotenv import load_dotenv
 import logging
 from log_handler import LogsHandler
 
@@ -29,8 +29,6 @@ def respont_to_user(bot, update):
 
     if dialogflow_response:
         update.message.reply_text(dialogflow_response)
-    else:
-        update.message.reply_text('Хмм, я не понял :-(')
 
 
 def error(bot, update, error):
@@ -39,10 +37,11 @@ def error(bot, update, error):
 
 
 def main():
-    logger.setLevel(logging.INFO)
-    logger.addHandler(LogsHandler(
+    logs_handler = LogsHandler(
         os.getenv('TG_TOKEN'),
-        os.getenv('TG_CHAT_ID')))
+        os.getenv('TG_CHAT_ID'))
+    logs_handler.setLevel(logging.INFO)
+    logger.addHandler(logs_handler)
     logger.info('TG Bot is running.')
     updater = Updater(os.environ.get('TG_DVMN_LESSONS'))
     dp = updater.dispatcher

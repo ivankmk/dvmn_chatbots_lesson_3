@@ -17,10 +17,11 @@ def respont_to_user(event, vk_api):
         os.getenv('DF_PROJECT'),
         session_id,
         [event.text], 'ru')
-    if dialogflow_response:
+    fulfillment_text, is_fallback = dialogflow_response
+    if fulfillment_text and not is_fallback:
         vk_api.messages.send(
             user_id=event.user_id,
-            message=dialogflow_response,
+            message=fulfillment_text,
             random_id=random.randint(1, 1000)
         )
 

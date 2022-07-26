@@ -21,9 +21,10 @@ def respont_to_user(bot, update):
         os.getenv('DF_PROJECT'),
         session_id,
         [update.message.text], 'ru')
+    fulfillment_text, _ = dialogflow_response
 
-    if dialogflow_response:
-        update.message.reply_text(dialogflow_response)
+    if fulfillment_text:
+        update.message.reply_text(fulfillment_text)
 
 
 def error(bot, update, error):
